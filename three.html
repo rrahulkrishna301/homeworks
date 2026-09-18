@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Green Leaf Café</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you!</p>
+    </header>
+
+    <main>
+        <h2>Get in Touch</h2>
+
+        <p>
+            Have a question, suggestion, or special request?
+            Fill out the form below and our team at Green Leaf Café
+            will get back to you as soon as possible.
+        </p>
+
+        <form action="#" method="post">
+
+            <p>
+                <label for="name">Full Name:</label><br>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your full name"
+                    maxlength="50"
+                    autocomplete="name"
+                    required
+                >
+            </p>
+
+            <p>
+                <label for="email">Email Address:</label><br>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    maxlength="100"
+                    autocomplete="email"
+                    required
+                >
+            </p>
+
+            <p>
+                <label for="phone">Phone Number:</label><br>
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="+91 98765 43210"
+                    maxlength="15"
+                    pattern="[+]?[0-9\s()-]{7,15}"
+                    autocomplete="tel"
+                >
+            </p>
+
+            <p>
+                <label for="subject">Subject:</label><br>
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    placeholder="Enter the subject"
+                    maxlength="100"
+                    required
+                >
+            </p>
+
+            <p>
+                <label for="message">Message:</label><br>
+                <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Write your message here..."
+                    maxlength="500"
+                    rows="8"
+                    cols="40"
+                    required
+                ></textarea>
+            </p>
+
+            <p>
+                <button type="submit">Send Message</button>
+                <button type="reset">Clear</button>
+            </p>
+
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Green Leaf Café. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
+
