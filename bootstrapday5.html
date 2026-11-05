@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkyWay Travels</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: white;
+  color: black;
+}
+
+/* navbar */
+.navbar {
+  background-color: darkblue;
+  text-align: center;
+  padding: 15px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+.navbar a.disabled {
+  color: gray;
+  pointer-events: none;
+}
+
+/* pills */
+.pills {
+  margin: 20px;
+}
+
+.pills a {
+  background-color: lightblue;
+  color: black;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+/* sidebar */
+.sidebar {
+  float: left;
+  width: 120px;
+  margin: 20px;
+  border: 1px solid gray;
+}
+
+.sidebar a {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+  border-bottom: 1px solid lightgray;
+}
+
+.content {
+  margin-left: 180px;
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="#">Home</a>
+  <a href="#">Destinations</a>
+  <a href="#" class="disabled">Bookings</a>
+  <a href="#">Contact</a>
+</div>
+
+<div class="pills">
+  <a href="#">Beach</a>
+  <a href="#">Mountain</a>
+  <a href="#">City</a>
+  <a href="#">Adventure</a>
+</div>
+
+<div class="sidebar">
+  <a href="#">Offers</a>
+  <a href="#">Packages</a>
+  <a href="#">Gallery</a>
+  <a href="#">Support</a>
+</div>
+
+<div class="content">
+  <h1>Welcome to SkyWay Travels</h1>
+  <p>Book your dream vacation with us!</p>
+</div>
+
+</body>
+</html>
