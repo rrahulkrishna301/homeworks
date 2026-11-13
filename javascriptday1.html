@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grocery Shop Calculator</title>
+</head>
+<body>
+  <h1>Grocery Shop Calculator</h1>
+  
+
+  <script>
+    
+    let item1 = "Rice";
+    let item2 = "Sugar";
+    let item3 = "Wheat";
+
+    // Prices (per kg)
+    let ricePrice = 60;
+    let sugarPrice = 45;
+    let wheatPrice = 40;
+
+    // Quantities purchased (kg)
+    let riceQty = 2;
+    let sugarQty = 3;
+    let wheatQty = 5;
+
+    
+    let riceCost = ricePrice * riceQty;
+    let sugarCost = sugarPrice * sugarQty;
+    let wheatCost = wheatPrice * wheatQty;
+
+    console.log(item1 + " cost: " + riceCost);   
+    console.log(item2 + " cost: " + sugarCost);  
+    console.log(item3 + " cost: " + wheatCost);  
+
+    
+    let totalBill = riceCost + sugarCost + wheatCost;
+    console.log("Total bill: " + totalBill);     
+
+    // Change in the quantity of sugar and recalculation
+    sugarQty = 6;
+    sugarCost = sugarPrice * sugarQty;
+    totalBill = riceCost + sugarCost + wheatCost;
+
+    console.log("Updated " + item2 + " quantity: " + sugarQty);  
+    console.log("Updated " + item2 + " cost: " + sugarCost);     
+    console.log("Updated total bill: " + totalBill);             
+  </script>
+</body>
+</html>
