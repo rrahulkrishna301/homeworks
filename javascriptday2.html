@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Manager</title>
+</head>
+<body>
+  <h1>Contact Manager</h1>
+  <p id="output"></p>
+
+  <script>
+    const contact1 = {
+      name: "Alice Johnson",
+      phone: "555-123-4567",
+      email: "alice@example.com",
+      getInfo() {
+        return `Name: ${this.name} | Phone: ${this.phone} | Email: ${this.email}`;
+      }
+    };
+
+    const contact2 = {
+      name: "Bob Smith",
+      phone: "555-987-6543",
+      email: "bob@example.com",
+      getInfo() {
+        return `Name: ${this.name} | Phone: ${this.phone} | Email: ${this.email}`;
+      }
+    };
+
+    function printContactInfo(contact) {
+      const info = contact.getInfo();
+      console.log(info);
+      document.getElementById("output").innerHTML += info + "<br>";
+    }
+
+    printContactInfo(contact1);
+    printContactInfo(contact2);
+  </script>
+</body>
+</html>
