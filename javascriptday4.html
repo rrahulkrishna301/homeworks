@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Game Result Generator</title>
+</head>
+<body>
+  <h2>Game Result Generator</h2>
+  <div id="results"></div>
+
+  <script>
+    // 1. Mystery level: random whole number between 1 and 50
+    const mysteryLevel = Math.floor(Math.random() * 50) + 1;
+
+    // 2. User score as a string, converted to a number
+    const userScoreStr = "45";
+    const userScore = Number(userScoreStr);
+
+    // 3. Absolute difference
+    const difference = Math.abs(mysteryLevel - userScore);
+
+    // 4. Square root of the user's score
+    const sqrtScore = Math.sqrt(userScore);
+
+    // 5. Pi
+    const pi = Math.PI;
+
+    // 6. Implicit conversion: "20" * 5
+    const implicitResult = "20" * 5;
+
+    // 7. Highest and lowest among 10, 20, and the mystery level
+    const highest = Math.max(10, 20, mysteryLevel);
+    const lowest = Math.min(10, 20, mysteryLevel);
+
+    
+    console.log("Mystery level:", mysteryLevel);
+    console.log("User score (number):", userScore);
+    console.log("Absolute difference:", difference);
+    console.log("Square root of user score:", sqrtScore);
+    console.log("Pi:", pi);
+    console.log('"20" * 5 =', implicitResult);
+    console.log("Highest value:", highest);
+    console.log("Lowest value:", lowest);
+
+    
+    document.getElementById("results").innerHTML =
+      "<p>Mystery level: " + mysteryLevel + "</p>" +
+      "<p>User score (number): " + userScore + "</p>" +
+      "<p>Absolute difference: " + difference + "</p>" +
+      "<p>Square root of user score: " + sqrtScore + "</p>" +
+      "<p>Pi: " + pi + "</p>" +
+      "<p>\"20\" * 5 = " + implicitResult + "</p>" +
+      "<p>Highest of 10, 20, and mystery level: " + highest + "</p>" +
+      "<p>Lowest of 10, 20, and mystery level: " + lowest + "</p>";
+  </script>
+</body>
+</html>
