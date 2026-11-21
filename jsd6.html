@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Result Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-body-tertiary">
+<main class="container py-4" style="max-width: 760px;">
+  <h1 class="h3 mb-4">Student Result Dashboard</h1>
+
+  <!-- Summary cards -->
+  <div class="row g-3 mb-3">
+    <div class="col-12 col-sm-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <div class="fs-3 fw-bold" id="total"></div>
+          <div class="text-secondary small">Total score</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <div class="fs-3 fw-bold" id="allPassed"></div>
+          <div class="text-secondary small">Everyone passed (above 35)</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <div class="fs-3 fw-bold" id="hasTopper"></div>
+          <div class="text-secondary small">Anyone scored above 90</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Name lists -->
+  <div class="card shadow-sm mb-3">
+    <div class="card-body">
+      <h2 class="h6 mb-3">All students</h2>
+      <div class="d-flex flex-wrap gap-2" id="allNames"></div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm mb-3">
+    <div class="card-body">
+      <h2 class="h6 mb-3">Scored above 60</h2>
+      <div class="d-flex flex-wrap gap-2" id="above60"></div>
+    </div>
+  </div>
+
+  <!-- Ranking table -->
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="h6 mb-3">Ranking by score</h2>
+      <div class="table-responsive">
+        <table class="table align-middle mb-0">
+          <thead>
+            <tr><th>Rank</th><th>Name</th><th>Score</th><th style="width:40%">Progress</th></tr>
+          </thead>
+          <tbody id="ranking"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  const students = [
+    { name: "Aarav", score: 85 },
+    { name: "Meera", score: 92 },
+    { name: "Rohan", score: 58 },
+    { name: "Sara",  score: 73 },
+    { name: "Kabir", score: 41 }
+  ];
+
+  const fillBadges = (id, list) => {
+    document.getElementById(id).innerHTML = list.length
+      ? list.map(n => `<span class="badge text-bg-primary fs-6 fw-normal">${n}</span>`).join("")
+      : `<span class="text-secondary">None</span>`;
+  };
+
+  const setYesNo = (id, value) => {
+    const el = document.getElementById(id);
+    el.textContent = value ? "Yes" : "No";
+    el.classList.add(value ? "text-success" : "text-danger");
+  };
+
+  // 1. All names
+  fillBadges("allNames", students.map(s => s.name));
+
+  // 2. Names with score above 60
+  fillBadges("above60", students.filter(s => s.score > 60).map(s => s.name));
+
+  // 3. Total score
+  document.getElementById("total").textContent =
+    students.reduce((sum, s) => sum + s.score, 0);
+
+  // 4. Did everyone pass?
+  setYesNo("allPassed", students.every(s => s.score > 35));
+
+  // 5. Did anyone score above 90?
+  setYesNo("hasTopper", students.some(s => s.score > 90));
+
+  // 6. Sort by score, highest first
+  const ranked = [...students].sort((a, b) => b.score - a.score);
+  document.getElementById("ranking").innerHTML = ranked.map((s, i) => `
+    <tr>
+      <td>${i + 1}</td>
+      <td>${s.name}</td>
+      <td>${s.score}</td>
+      <td>
+        <div class="progress" role="progressbar" aria-valuenow="${s.score}" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar" style="width:${s.score}%"></div>
+        </div>
+      </td>
+    </tr>`).join("");
+</script>
+</body>
+</html>
