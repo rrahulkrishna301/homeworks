@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event Reminder Tool</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-5" style="max-width: 500px;">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h1 class="h4 mb-3">🎂 Event Reminder</h1>
+
+        <label for="dateInput" class="form-label">Pick a past date (e.g. your last birthday)</label>
+        <input type="date" id="dateInput" class="form-control mb-3">
+        <button id="checkBtn" class="btn btn-primary w-100">Check</button>
+
+        <div id="alertBox" class="alert alert-danger mt-3 d-none"></div>
+
+        <div id="result" class="mt-4 d-none">
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Year</span><strong id="yearOut"></strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Month</span><strong id="monthOut"></strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Day</span><strong id="dayOut"></strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Full years passed</span><strong id="yearsOut"></strong>
+            </li>
+          </ul>
+          <div id="messageOut" class="alert alert-info mb-0"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+
+    const input = document.getElementById("dateInput");
+    const alertBox = document.getElementById("alertBox");
+    const result = document.getElementById("result");
+
+    // Don't allow future dates in the picker
+    const now = new Date();
+    input.max = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+
+    function showError(msg) {
+      alertBox.textContent = msg;
+      alertBox.classList.remove("d-none");
+      result.classList.add("d-none");
+    }
+
+    function checkDate() {
+      alertBox.classList.add("d-none");
+
+      if (!input.value) return showError("Please choose a date.");
+
+      const date = new Date(input.value); // YYYY-MM-DD, read as UTC
+      const year = date.getUTCFullYear();
+      const month = date.getUTCMonth();
+      const day = date.getUTCDate();
+
+      const today = new Date();
+      const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const picked = new Date(year, month, day);
+
+      if (picked > todayMidnight) return showError("Please choose a date in the past.");
+
+      // Full years passed
+      let years = today.getFullYear() - year;
+      const hadAnniversary =
+        today.getMonth() > month ||
+        (today.getMonth() === month && today.getDate() >= day);
+      if (!hadAnniversary) years--;
+
+      document.getElementById("yearOut").textContent = year;
+      document.getElementById("monthOut").textContent = monthNames[month];
+      document.getElementById("dayOut").textContent = day;
+      document.getElementById("yearsOut").textContent = years;
+
+      const msgBox = document.getElementById("messageOut");
+      if (years >= 1) {
+        msgBox.textContent = "It has been more than a year since that date.";
+        msgBox.className = "alert alert-success mb-0";
+      } else {
+        msgBox.textContent = "It has been less than a year since that date.";
+        msgBox.className = "alert alert-warning mb-0";
+      }
+
+      result.classList.remove("d-none");
+    }
+
+    document.getElementById("checkBtn").addEventListener("click", checkDate);
+  </script>
+</body>
+</html>
