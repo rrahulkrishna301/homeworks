@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Guessing Game</title>
+</head>
+<body>
+  <h2>Guess the Number (1 to 5)</h2>
+  <div id="output"></div>
+
+  <script>
+    var output = document.getElementById("output");
+    var chances = 0;
+    var won = false;
+
+    while (chances < 5) {
+      var guess = parseInt(prompt("Enter a number between 1 and 5:"));
+
+      // Invalid input: skip without using a chance
+      if (isNaN(guess) || guess < 1 || guess > 5) {
+        output.innerHTML += "<p style='color:red;'>Invalid input</p>";
+        continue;
+      }
+
+      chances++;
+
+      // Convert number to words
+      var word = "";
+      switch (guess) {
+        case 1: word = "One"; break;
+        case 2: word = "Two"; break;
+        case 3: word = "Three"; break;
+        case 4: word = "Four"; break;
+        case 5: word = "Five"; break;
+      }
+
+      output.innerHTML += "<p>Chance " + chances + ": You entered " + word + ". ";
+
+      if (guess === 3) {
+        output.innerHTML += "<b>You guessed it right!</b></p>";
+        won = true;
+        break; // stop the game
+      } else {
+        output.innerHTML += "Wrong guess. Try again.</p>";
+      }
+    }
+
+    if (!won) {
+      output.innerHTML += "<h3>Game over</h3>";
+    }
+  </script>
+</body>
+</html>
