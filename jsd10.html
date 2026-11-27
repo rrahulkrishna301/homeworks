@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Feedback Checker</title>
+</head>
+<body>
+  <h1>Check the console (F12) 👀</h1>
+
+  <script>
+    // Feedback from the contact form (JSON string)
+    const feedbackJson = '{"name": "Sam", "email": "sam@example.com", "feedback": "THANK you for the quick support!"}';
+
+    // Named arrow function
+    const checkFeedback = (json) => {
+      try {
+        // Convert JSON string into a JavaScript object
+        const data = JSON.parse(json);
+
+        // Case-insensitive check for the word "thank"
+        if (data.feedback.toLowerCase().includes("thank")) {
+          console.log("Positive feedback received");
+        } else {
+          console.log("Feedback noted");
+        }
+      } catch (error) {
+        console.error("Error: Invalid JSON ->", error.message);
+      }
+    };
+
+    // Run the function
+    checkFeedback(feedbackJson);
+
+    // Try these to test other cases:
+    // checkFeedback('{"feedback": "The page is slow."}');   // Feedback noted
+    // checkFeedback('{"feedback": "Thank');                 // Error (broken JSON)
+  </script>
+</body>
+</html>
